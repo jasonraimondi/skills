@@ -1,5 +1,4 @@
 {
-  "effortLevel": "high",
   "cleanupPeriodDays": 365,
   "permissions": {
     "deny": [
@@ -19,14 +18,15 @@
     ],
     "defaultMode": "auto"
   },
-  "__disableClaudeAiConnectors": true,
   "disableBundledSkills": true,
   "disableRemoteControl": true,
+  "effortLevel": "high",
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
+  "__disableClaudeAiConnectors": true,
   "disableArtifacts": true,
   "__disableWorkflows": true
 }
