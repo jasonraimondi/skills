@@ -20,7 +20,6 @@
   },
   "disableBundledSkills": true,
   "disableRemoteControl": true,
-  "effortLevel": "high",
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
   "remoteControlAtStartup": false,
@@ -28,5 +27,6 @@
   "skipAutoPermissionPrompt": true,
   "__disableClaudeAiConnectors": true,
   "disableArtifacts": true,
-  "__disableWorkflows": true
+  "__disableWorkflows": true,
+  "model": "opus"
 }
