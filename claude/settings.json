@@ -29,5 +29,6 @@
   "skipAutoPermissionPrompt": true,
   "__disableClaudeAiConnectors": true,
   "disableArtifacts": true,
-  "__disableWorkflows": true
+  "__disableWorkflows": true,
+  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/Users/jraimondi/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
 }
