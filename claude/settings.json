@@ -18,15 +18,16 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "opus",
   "disableBundledSkills": true,
   "disableRemoteControl": true,
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
+  "theme": "dark",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "__disableClaudeAiConnectors": true,
   "disableArtifacts": true,
-  "__disableWorkflows": true,
-  "model": "opus"
+  "__disableWorkflows": true
 }
