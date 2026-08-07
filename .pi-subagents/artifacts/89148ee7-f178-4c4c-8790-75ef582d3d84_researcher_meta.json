@@ -1,0 +1,183 @@
+{
+  "runId": "89148ee7-f178-4c4c-8790-75ef582d3d84",
+  "agent": "researcher",
+  "task": "Research the consolidation proposal in /var/folders/bs/v8tgtdv17gs_r38126hngln80000gn/T/handoff-typescript-skill-consolidation.XXXXXX.md.vtExDKDJkj. Work in /Users/jraimondi/Code/jason/skills, read the relevant local skill manifests/config/discovery rules and any authoritative Pi documentation/source necessary to answer the handoff's open questions. Use primary sources. Determine the exact current registration mechanism, compare unique useful content between vendor-auto/typescript-advanced-types and vendor-auto/typescript-magician (including rules), and recommend a safe concrete implementation that meets acceptance criteria. Write a single cited Markdown research brief in the repository following existing research-note conventions (if none, choose a sensible docs/research path). Do not change manifests or delete skills. In your final response give the output file path and concise findings.\n\n---\n**Output:**\nWrite your findings to exactly this path: /Users/jraimondi/Code/jason/skills/.pi-subagents/artifacts/outputs/89148ee7-f178-4c4c-8790-75ef582d3d84/research-typescript-skill-consolidation.md\nThis path is authoritative for this run.\nIgnore any other output filename or output path mentioned elsewhere, including output destinations in the base agent prompt, system prompt, or task instructions.\n\n## Acceptance Contract\nAcceptance level: checked\nCompletion is not accepted from prose alone. End with a structured acceptance report.\n\nCriteria:\n- criterion-1: Return concrete findings with file paths and severity when applicable\n\nRequired evidence: changed-files, tests-added, commands-run, residual-risks, no-staged-files, manual-notes\n\nFinish with a fenced JSON block tagged `acceptance-report` in this shape:\nUse empty arrays when no items apply; array fields contain strings unless object entries are shown.\n`criteriaSatisfied[].status` must be exactly one of: satisfied, not-satisfied, not-applicable.\n`commandsRun[].result` must be exactly one of: passed, failed, not-run.\n`manualNotes` and `notes` are optional strings; an empty string means no note and does not satisfy `manual-notes` evidence.\n```acceptance-report\n{\n  \"criteriaSatisfied\": [\n    {\n      \"id\": \"criterion-1\",\n      \"status\": \"satisfied\",\n      \"evidence\": \"specific proof\"\n    }\n  ],\n  \"changedFiles\": [\n    \"src/file.ts\"\n  ],\n  \"testsAddedOrUpdated\": [\n    \"test/file.test.ts\"\n  ],\n  \"commandsRun\": [\n    {\n      \"command\": \"command\",\n      \"result\": \"passed\",\n      \"summary\": \"short result\"\n    }\n  ],\n  \"validationOutput\": [\n    \"validation output or concise summary\"\n  ],\n  \"residualRisks\": [\n    \"none\"\n  ],\n  \"noStagedFiles\": true,\n  \"diffSummary\": \"short description of the diff\",\n  \"reviewFindings\": [\n    \"blocker: file.ts:12 - issue found, or no blockers\"\n  ],\n  \"manualNotes\": \"anything else the parent should know\"\n}\n```",
+  "exitCode": 1,
+  "model": "openai/gpt-5.6-terra:medium",
+  "attemptedModels": [
+    "openai/gpt-5.6-terra:medium"
+  ],
+  "modelAttempts": [
+    {
+      "model": "openai/gpt-5.6-terra:medium",
+      "success": false,
+      "exitCode": 1,
+      "error": "Agent 'researcher' requested unavailable child tools: web_search, fetch_content, get_search_content.\nThe `tools` field is a strict allowlist; it does not load extension code.\nFor extension tools, add the provider path to `subagentOnlyExtensions` (child-only), `extensions`, or as a path-like entry in `tools`, while keeping each registered tool name in `tools`.\nFor MCP tools, verify the MCP adapter configuration and selected tool names. For builtin tools, verify the name against the installed Pi version.",
+      "usage": {
+        "input": 18,
+        "output": 5388,
+        "cacheRead": 65237,
+        "cacheWrite": 31982,
+        "cost": 0.15769439999999998,
+        "turns": 6
+      }
+    }
+  ],
+  "error": "Agent 'researcher' requested unavailable child tools: web_search, fetch_content, get_search_content.\nThe `tools` field is a strict allowlist; it does not load extension code.\nFor extension tools, add the provider path to `subagentOnlyExtensions` (child-only), `extensions`, or as a path-like entry in `tools`, while keeping each registered tool name in `tools`.\nFor MCP tools, verify the MCP adapter configuration and selected tool names. For builtin tools, verify the name against the installed Pi version.",
+  "acceptance": {
+    "status": "checked",
+    "evidenceStatus": "checked",
+    "explicit": true,
+    "effectiveAcceptance": {
+      "level": "checked",
+      "explicit": true,
+      "inferredReason": [
+        "read-only/reviewer-style agent"
+      ],
+      "criteria": [
+        {
+          "id": "criterion-1",
+          "must": "Return concrete findings with file paths and severity when applicable",
+          "evidence": [
+            "changed-files",
+            "tests-added",
+            "commands-run",
+            "residual-risks",
+            "no-staged-files",
+            "manual-notes"
+          ],
+          "severity": "required"
+        }
+      ],
+      "evidence": [
+        "changed-files",
+        "tests-added",
+        "commands-run",
+        "residual-risks",
+        "no-staged-files",
+        "manual-notes"
+      ],
+      "verify": [],
+      "stopRules": []
+    },
+    "inferredReason": [
+      "read-only/reviewer-style agent"
+    ],
+    "criteria": [
+      {
+        "id": "criterion-1",
+        "must": "Return concrete findings with file paths and severity when applicable",
+        "evidence": [
+          "changed-files",
+          "tests-added",
+          "commands-run",
+          "residual-risks",
+          "no-staged-files",
+          "manual-notes"
+        ],
+        "severity": "required"
+      }
+    ],
+    "runtimeChecks": [
+      {
+        "id": "criterion:criterion-1",
+        "status": "passed",
+        "message": "Required criterion 'criterion-1' satisfied."
+      },
+      {
+        "id": "evidence:changed-files",
+        "status": "passed",
+        "message": "changed-files evidence present."
+      },
+      {
+        "id": "evidence:tests-added",
+        "status": "not-applicable",
+        "message": "tests-added evidence explicitly reported as not applicable."
+      },
+      {
+        "id": "evidence:commands-run",
+        "status": "passed",
+        "message": "commands-run evidence present."
+      },
+      {
+        "id": "evidence:residual-risks",
+        "status": "passed",
+        "message": "residual-risks evidence present."
+      },
+      {
+        "id": "evidence:no-staged-files",
+        "status": "passed",
+        "message": "no-staged-files evidence present."
+      },
+      {
+        "id": "evidence:manual-notes",
+        "status": "passed",
+        "message": "manual-notes evidence present."
+      },
+      {
+        "id": "no-staged-files",
+        "status": "passed",
+        "message": "No staged files detected."
+      }
+    ],
+    "verifyRuns": [],
+    "childReport": {
+      "criteriaSatisfied": [
+        {
+          "id": "criterion-1",
+          "status": "satisfied",
+          "evidence": "Concrete high/medium findings identify setup.sh target and policy code, the stale state manifest, live ~/.agents path, both TypeScript manifests, and the exact safe registration/removal sequence."
+        }
+      ],
+      "changedFiles": [
+        ".pi-subagents/artifacts/outputs/89148ee7-f178-4c4c-8790-75ef582d3d84/research-typescript-skill-consolidation.md"
+      ],
+      "testsAddedOrUpdated": [],
+      "commandsRun": [
+        {
+          "command": "./setup.sh --dry-run",
+          "result": "not-run",
+          "summary": "No shell/process-execution tool was available to this research subagent; recommended as the first implementation validation."
+        }
+      ],
+      "validationOutput": [
+        "Read primary local setup.sh, README.md, both TypeScript SKILL.md files, representative magician rules, ~/.local/state/jason-skills/synced-skills, and the live ~/.agents/skills/typescript-advanced-types/SKILL.md path.",
+        "Confirmed state manifest contains typescript-advanced-types and omits typescript-magician; confirmed live old-skill path is readable and live magician path is absent."
+      ],
+      "residualRisks": [
+        "Pi-specific discovery of ~/.agents/skills versus the README-claimed ~/.pi/agent/skills remains unexecuted and must be checked after installer changes.",
+        "Do not remove or move typescript-advanced-types until typescript-magician is demonstrably present in the active catalogue.",
+        "Repository git index was not queryable; no files were staged by this research task."
+      ],
+      "noStagedFiles": true,
+      "diffSummary": "Added one research brief only; no skill manifest, registration script, catalogue, or skill directory was modified.",
+      "reviewFindings": [
+        "high: README.md installation claim and setup.sh targets disagree about ~/.pi/agent/skills.",
+        "high: current synced catalogue exposes typescript-advanced-types but not typescript-magician.",
+        "medium: magician workflow assumes root tsc --noEmit and mandates removal of every any."
+      ],
+      "manualNotes": "No manifests were changed and no skills were deleted. Run setup.sh and validate active Pi discovery before carrying out the proposed retirement."
+    }
+  },
+  "launchContractDigest": "9fd54258a5a271cacadaea69c705b4b50a953c9cd749ba5f2908a0133d5b536c",
+  "launchResolvedExtensions": {
+    "version": 1,
+    "source": "launch-resolved",
+    "disableAmbientExtensions": false,
+    "runtime": [
+      "sha256:a8d6022219834238"
+    ],
+    "configured": [],
+    "effective": [
+      "sha256:a8d6022219834238"
+    ],
+    "omitted": {
+      "runtime": 0,
+      "configured": 0,
+      "effective": 0
+    }
+  },
+  "transcriptPath": "/Users/jraimondi/Code/jason/skills/.pi-subagents/artifacts/89148ee7-f178-4c4c-8790-75ef582d3d84_researcher_transcript.jsonl",
+  "skills": [],
+  "timestamp": 1786037828523
+}
