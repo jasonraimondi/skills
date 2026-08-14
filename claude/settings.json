@@ -19,7 +19,29 @@
   },
   "model": "opus",
   "disableBundledSkills": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/jraimondi/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
   "disableRemoteControl": true,
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    }
+  },
   "autoMemoryEnabled": false,
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
@@ -29,5 +51,7 @@
   "__disableClaudeAiConnectors": true,
   "disableArtifacts": true,
   "__disableWorkflows": true,
-  "hooks": {"SessionStart":[{"matcher":"*","hooks":[{"type":"command","command":"bash '/Users/jraimondi/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
+  "enabledPlugins": {
+    "figma@claude-plugins-official": true
+  }
 }
