@@ -17,7 +17,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "disableBundledSkills": true,
   "hooks": {
     "SessionStart": [
@@ -51,9 +51,6 @@
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "__disableClaudeAiConnectors": true,
-  "disableArtifacts": true,
-  "__disableWorkflows": true,
   "autoMode": {
     "environment": [
       "### Org-wide",
@@ -81,5 +78,13 @@
       "**Org-specific CLIs**: None configured",
       "No additional routine-under-<user>/ prefix qualifiers found"
     ]
+  },
+  "__disableClaudeAiConnectors": true,
+  "disableArtifacts": true,
+  "__disableWorkflows": true,
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
   }
 }
