@@ -18,7 +18,7 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
-  "disableBundledSkills": true,
+  "__disableBundledSkills": true,
   "hooks": {
     "SessionStart": [
       {
@@ -80,7 +80,7 @@
     ]
   },
   "__disableClaudeAiConnectors": true,
-  "disableArtifacts": true,
+  "__disableArtifacts": true,
   "__disableWorkflows": true,
   "modelSettings": {
     "claude-opus-5": {
