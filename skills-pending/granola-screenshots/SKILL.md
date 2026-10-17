@@ -58,4 +58,4 @@ Give the user:
 - The screenshots not opened and why.
 - A one-line statement that transcript placement is inferred from content, since the transcript has no timestamps.
 
-If the user wants a record, file it under `~/Desktop/ig-notebook/research/` as a dated note, and put the transcript and screenshot copies in a folder beside it.
+If the user wants a record, file it under in our Skill(notebook) as a dated note, and put the transcript and screenshot copies in a folder beside it.
