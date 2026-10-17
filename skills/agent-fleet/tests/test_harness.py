@@ -40,7 +40,7 @@ class PiRecordsTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     harness.pi_records()
 
-    def test_missing_node_raises(self):
+    def test_spawn_oserror_raises(self):
         with patch.object(harness.subprocess, "run", side_effect=FileNotFoundError("node")):
             with self.assertRaises(RuntimeError):
                 harness.pi_records()
@@ -123,12 +123,15 @@ class BridgeNodeTests(unittest.TestCase):
                          "node 24 is not installed. Set PI_PEER_NODE to a newer node.")
 
     def test_old_node_raises_naming_path_version_and_override(self):
-        node_path = self.fake_node("bin", "22.15.0")
-        self.env("bin")
-        with self.assertRaises(RuntimeError) as caught:
-            harness.bridge_node()
-        self.assertEqual(str(caught.exception),
-                         f"pi-peer bridge needs Node 22.18+; {node_path} is v22.15.0. Set PI_PEER_NODE to a newer node.")
+        for version in ("22.15.0", "22.17.9"):
+            with self.subTest(version=version):
+                harness.bridge_node.cache_clear()
+                node_path = self.fake_node(version, version)
+                self.env("none", node_path)
+                with self.assertRaises(RuntimeError) as caught:
+                    harness.bridge_node()
+                self.assertEqual(str(caught.exception),
+                                 f"pi-peer bridge needs Node 22.18+; {node_path} is v{version}. Set PI_PEER_NODE to a newer node.")
 
     def test_missing_node_raises(self):
         for peer_node, named in ((None, "node"), ("/nowhere/node", "/nowhere/node")):
