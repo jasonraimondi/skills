@@ -7,6 +7,9 @@ import subprocess
 
 from peer_registry import pid_alive
 
+# A bare `node` resolves through the working directory's version manager and can predate type stripping.
+BRIDGE_NODE = ["mise", "exec", "node@24", "--", "node"]
+
 
 def detect_harness(explicit=None):
     if explicit:
@@ -37,7 +40,7 @@ def live_bridge(pid):
 
 
 def run_bridge(*args, timeout=30):
-    command = ["node", bridge_script(), *args]
+    command = [*BRIDGE_NODE, bridge_script(), *args]
     try:
         result = subprocess.run(command, capture_output=True, text=True, timeout=timeout)
     except (OSError, subprocess.TimeoutExpired) as error:

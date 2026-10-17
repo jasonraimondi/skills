@@ -31,7 +31,7 @@ class PiRecordsTests(unittest.TestCase):
     def test_parses_bridge_list_output(self):
         with node(stdout=json.dumps([PEER])) as run:
             self.assertEqual(harness.pi_records(), [PEER])
-        self.assertEqual(run.call_args.args[0], ["node", "/repo/bridge.ts", "list", "--json"])
+        self.assertEqual(run.call_args.args[0], ["mise", "exec", "node@24", "--", "node", "/repo/bridge.ts", "list", "--json"])
 
     def test_node_failure_raises_instead_of_reporting_no_peers(self):
         for returncode, stdout in ((1, "[]"), (0, "not json"), (0, '{"peers": []}')):

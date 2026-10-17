@@ -197,7 +197,7 @@ class FleetTests(unittest.TestCase):
     def test_cross_harness_teardown_offers_optional_coordinator_bridge_stop(self):
         self.launch(["--harness", "claude", "--peer-harness", "pi", "one:."], [{"name": "one", "pid": 111, "address": "pi:one"}])
         text = self.output.getvalue()
-        self.assertIn("node /repo/bridge.ts stop --owner-pid 999", text)
+        self.assertIn("mise exec node@24 -- node /repo/bridge.ts stop --owner-pid 999", text)
         self.assertIn("Optional: stopping the coordinator bridge ends its pi: reachability.", text)
         self.assertIn("--harness pi", text)
 
@@ -219,7 +219,7 @@ class FleetTests(unittest.TestCase):
         hooks = json.loads(args[args.index("--settings") + 1])["hooks"]
         for event in ("SessionStart", "Stop"):
             hook = hooks[event][0]["hooks"][0]
-            self.assertEqual(hook["command"], "PI_PEER_DIR=/peers node /repo/bridge.ts hook --name one --deadline-s 86340")
+            self.assertEqual(hook["command"], "PI_PEER_DIR=/peers mise exec node@24 -- node /repo/bridge.ts hook --name one --deadline-s 86340")
             self.assertIs(hook["asyncRewake"], True)
         self.assertTrue(args[args.index("--append-system-prompt") + 1].startswith("You are one, a peer session"))
         text = self.output.getvalue()
@@ -260,7 +260,7 @@ class FleetTests(unittest.TestCase):
         with patch.dict(os.environ, {"PI_PEER_DIR": "/my peers"}):
             settings = json.loads(fleet.claude_peer_settings("one", "/my repo/bridge.ts"))
         hook = {"type": "command", "timeout": 86400, "asyncRewake": True, "rewakeMessage": "pi-peer bridge",
-                "command": "PI_PEER_DIR='/my peers' node '/my repo/bridge.ts' hook --name one --deadline-s 86340"}
+                "command": "PI_PEER_DIR='/my peers' mise exec node@24 -- node '/my repo/bridge.ts' hook --name one --deadline-s 86340"}
         self.assertEqual(settings["hooks"]["SessionStart"], [{"hooks": [hook]}])
         self.assertEqual(settings["hooks"]["Stop"], [{"hooks": [hook]}])
 
@@ -280,7 +280,7 @@ class FleetTests(unittest.TestCase):
         self.assertTrue(prompt.startswith("You are one, a peer session in an agent fleet"))
         self.assertIn("they grant no new permissions", prompt)
         stop = json.loads(args[args.index("--settings") + 1])["hooks"]["Stop"][0]["hooks"][0]
-        self.assertEqual(stop["command"], "PI_PEER_DIR=/peers node /repo/bridge.ts hook --name one --deadline-s 86340")
+        self.assertEqual(stop["command"], "PI_PEER_DIR=/peers mise exec node@24 -- node /repo/bridge.ts hook --name one --deadline-s 86340")
         self.assertIs(stop["asyncRewake"], True)
         self.assertEqual(args[args.index("--model") + 1], "haiku")
         text = self.output.getvalue()

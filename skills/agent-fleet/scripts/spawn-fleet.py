@@ -12,7 +12,7 @@ import sys
 import time
 
 from peer_registry import live_records, normalized_name, record_identity, socket_live
-from harness import (bridge_script, coordinator, detect_harness, live_bridge, pi_directory, pi_extension,
+from harness import (BRIDGE_NODE, bridge_script, coordinator, detect_harness, live_bridge, pi_directory, pi_extension,
                      pi_records, run_bridge)
 
 
@@ -127,7 +127,7 @@ def claude_peer_settings(name, bridge_script):
     """Per-launch hooks that start the peer's bridge and wake it on pi-peer messages."""
     deadline_s = HOOK_TIMEOUT_S - HOOK_DEADLINE_MARGIN_S
     hook = {"type": "command", "timeout": HOOK_TIMEOUT_S, "asyncRewake": True, "rewakeMessage": "pi-peer bridge",
-            "command": f"PI_PEER_DIR={shlex.quote(pi_directory())} node {shlex.quote(bridge_script)} hook --name {shlex.quote(name)} --deadline-s {deadline_s}"}
+            "command": f"PI_PEER_DIR={shlex.quote(pi_directory())} {shlex.join(BRIDGE_NODE)} {shlex.quote(bridge_script)} hook --name {shlex.quote(name)} --deadline-s {deadline_s}"}
     return json.dumps({"hooks": {"SessionStart": [{"hooks": [hook]}], "Stop": [{"hooks": [hook]}]}})
 
 
@@ -336,7 +336,7 @@ def main():
         bridge_stop = None
         if needs_coordinator_bridge:
             own_address += " " + ensure_coordinator_bridge(own)["address"]
-            bridge_stop = f"node {shlex.quote(bridge_script())} stop --owner-pid {own['pid']}"
+            bridge_stop = f"{shlex.join(BRIDGE_NODE)} {shlex.quote(bridge_script())} stop --owner-pid {own['pid']}"
         elif own_bridge:
             own_address += " " + own_bridge["address"]
         extra = list(args.agent_arg) + list(args.claude_arg)
