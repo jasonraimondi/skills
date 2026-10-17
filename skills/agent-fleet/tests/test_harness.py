@@ -122,6 +122,18 @@ class BridgeNodeTests(unittest.TestCase):
         self.assertEqual(str(caught.exception), f"pi-peer bridge needs Node 22.18+; {shim} could not report its version: "
                          "node 24 is not installed. Set PI_PEER_NODE to a newer node.")
 
+    def test_probe_that_hangs_or_cannot_start_reports_the_error(self):
+        node_path = self.fake_node("hang", "24.3.0")
+        self.env("hang")
+        for error in (subprocess.TimeoutExpired(cmd=node_path, timeout=10), OSError("Exec format error")):
+            with self.subTest(error=type(error).__name__):
+                harness.bridge_node.cache_clear()
+                with patch.object(harness.subprocess, "run", side_effect=error):
+                    with self.assertRaises(RuntimeError) as caught:
+                        harness.bridge_node()
+                self.assertEqual(str(caught.exception), f"pi-peer bridge needs Node 22.18+; {node_path} could not report its version: "
+                                 f"{error}. Set PI_PEER_NODE to a newer node.")
+
     def test_old_node_raises_naming_path_version_and_override(self):
         for version in ("22.15.0", "22.17.9"):
             with self.subTest(version=version):
